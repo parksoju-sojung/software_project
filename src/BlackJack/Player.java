@@ -1,36 +1,42 @@
-/**
- * SYST 17796 Project Winter 2019 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
+
 package BlackJack;
 
 /**
- * A class that models each Player in the game. Players have an identifier, which should be unique.
- * @author dancye, 2018
+ * A class that models Player in the game. Player has id, score and card hand.
+ * Player can gain score and show their hand.
+ * 
+ * @author Sojung Park
  */
 public class Player {
     String id; //the unique ID for this player
     int score = 0;
     Hand hand;
     
+    /**
+     * create a Player object with given name. New empty hand is created
+     * automatically
+     * 
+     * @param s name of the player
+     */
     public Player(String s) {
         hand = new Hand();
         id = s;
     }
     
+    /**
+     * add 1 point to the score
+     */
     public void addScore() {
         score++;
     }
     
     /**
-     * The method to be instantiated when you subclass the Player class
-     * with your specific type of Player and filled in with logic to play your game.
-     * 
-     * @return 
+     * Show hand by printing all the cards in the hand and value of the hand
      */
     public void showHand() {
         String s = "";
+        //get all the String version of the card in the hand and add to String s
+        //for print later
         for(int i = 0; i < hand.getCards().size(); i++) {
             s += hand.getCards().get(i).toString() + " ";
         }

@@ -1,5 +1,10 @@
 package BlackJack;
 
+/**
+ * enum for card values
+ * 
+ * @author spark
+ */
 public enum Value {
     ACE (11, "Ace"),
     TWO (2, "2"), 
@@ -18,13 +23,29 @@ public enum Value {
     private String strVal;
     private int numVal;
     
+    /**
+     * retrieve string value of card value
+     * 
+     * @return string value of card value
+     */
     public String getStrVal() {
         return strVal;
     }
+    
+    /**
+     * retrieve integer value of card value
+     * @return 
+     */
     public int getNumVal() {
         return numVal;
     }
     
+    /**
+     * create value that represents card value
+     * 
+     * @param n integer value of card value
+     * @param s String value of car value
+     */
     private Value(int n, String s) {
         strVal = s;
         numVal = n;
