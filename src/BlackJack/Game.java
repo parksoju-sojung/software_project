@@ -1,17 +1,15 @@
-/**
- * SYST 17796 Project Winter 2019 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
+
 package BlackJack;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The class that models your game. You should create a more specific
- * child of this class and instantiate the methods given.
- * @author dancye, 2018
+ * The class that models BlackJack game. It has game name, user, dealer, deck of
+ * cards and error message used when there is not enough card in the deck. It
+ * shows current score for user and dealer and declare winner or draw
+ * 
+ * @author Sojung Park
  */
 public class Game {
     private final String gameName = "BlackJack";//the title of the game
@@ -20,34 +18,54 @@ public class Game {
     private Deck deck;
     final String cantContMsg = "Deck has runout! Thanks for playing.";
     
+    /**
+     * Create game with new Deck of Cards and register computer as dealer with
+     * name "Dealer"
+     */
     public Game() {
         deck = new Deck();
         dealer = new Player("Dealer");
     }
     
+    /**
+     * Register given player as user
+     * 
+     * @param p given player
+     */
     public void setUser(Player p) {
         user = p;
     }
 
     /**
+     * Retrieve game name
+     * 
      * @return the gameName
      */
     public String getGameName() {
         return gameName;
     }
     
+    /**
+     * Retrieve deck of cards
+     * 
+     * @return deck
+     */
     public Deck getDeck() {
         return deck;
     }
     
+    /**
+     * retrieve dealer of the game
+     * 
+     * @return dealer
+     */
     public Player getDealer() {
         return dealer;
     }
    
     
     /**
-     * Play the game. This might be one method or many method calls depending
-     * on your game.
+     * Play the game. 
      */
     public void play() {
         Scanner in = new Scanner(System.in);
@@ -68,14 +86,17 @@ public class Game {
                 + " and a face-down card");
             user.showHand();
             do {
-                System.out.println("Would you like to draw another card?(Y/N)");
+                System.out.print("Would you like to draw another card?(Y/N)");
                 char c = in.next().toUpperCase().charAt(0);
                 if (c == 'Y') {
                     user.hand.addCard(deck.draw());
                     user.showHand();
-                } else {
+                } else if (c == 'N') {
                     break;
-                } 
+                } else { 
+                    System.out.println("Please enter Y or N only");
+                    continue;
+                }
             } while (user.hand.calcHand() < 21);
             
             if(user.hand.calcHand() >21) {
